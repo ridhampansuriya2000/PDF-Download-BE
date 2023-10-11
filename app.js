@@ -7,6 +7,15 @@ const { PassThrough } = require('stream');
 const PDFDocument = require('pdfkit');
 const moment = require('moment');
 
+
+app.get('/',(req,res) => {
+	try{
+		res.sendFile(__dirname + '/views/initial.html');
+	}catch (e) {
+		res.status(500).send({error:e});
+	}
+})
+
 app.get("/generatePDF",async (req, res) => {
 
 	const apiUrl = 'https://api.usa.gov/crime/fbi/cde/arrest/state/AK/all';
